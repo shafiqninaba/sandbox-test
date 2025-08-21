@@ -16,8 +16,8 @@ echo "✅ Found Python version: $PYTHON_VERSION"
 echo ""
 
 echo "📥 Installing dependencies from requirements.txt..."
-pip install --quiet --upgrade pip
-pip install --quiet -r requirements.txt
+python3 -m pip install --quiet --upgrade pip
+python3 -m pip install --quiet -r requirements.txt
 
 if [ $? -eq 0 ]; then
     echo "✅ All dependencies installed successfully"
