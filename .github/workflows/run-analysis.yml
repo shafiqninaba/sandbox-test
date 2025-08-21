@@ -1,0 +1,43 @@
+name: Data Analysis Tool
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  run-analysis:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Make run.sh executable
+      run: chmod +x run.sh
+    
+    - name: Run analysis tool (default)
+      run: ./run.sh
+    
+    - name: Run analysis tool with mock data
+      run: ./run.sh --mock
+    
+    - name: Run analysis tool with matrix generation
+      run: ./run.sh --mock --matrix
+    
+    - name: Run analysis tool with export
+      run: ./run.sh --mock --export
