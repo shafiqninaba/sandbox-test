@@ -15,19 +15,6 @@ PYTHON_VERSION=$(python3 --version 2>&1 | grep -oE '[0-9]+\.[0-9]+')
 echo "✅ Found Python version: $PYTHON_VERSION"
 echo ""
 
-echo "🔧 Creating virtual environment..."
-if [ -d "venv" ]; then
-    echo "   Virtual environment already exists, using existing one..."
-else
-    python3 -m venv .venv
-    echo "✅ Virtual environment created"
-fi
-
-echo ""
-echo "🔄 Activating virtual environment..."
-source .venv/bin/activate
-
-echo ""
 echo "📥 Installing dependencies from requirements.txt..."
 pip install --quiet --upgrade pip
 pip install --quiet -r requirements.txt
