@@ -41,11 +41,3 @@ jobs:
     
     - name: Run analysis tool with export
       run: ./run.sh --mock --export
-    
-    - name: Upload results if generated
-      uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: analysis-results
-        path: results.json
-        if-no-files-found: ignore
